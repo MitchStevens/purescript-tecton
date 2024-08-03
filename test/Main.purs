@@ -6,6 +6,7 @@ import Effect (Effect)
 import Effect.Aff (launchAff_)
 import Test.AlignSpec as Align
 import Test.AnimationsSpec as Animations
+import Test.SizingSpec4 as Sizing4
 import Test.BackgroundsSpec as Backgrounds
 import Test.BoxSpec as Box
 import Test.ColorSpec as Color
@@ -60,6 +61,7 @@ main =
       Render.spec
       Selectors.spec
       Sizing.spec
+      Sizing4.spec
       Text.spec
       TextDecor.spec
       Transforms.spec

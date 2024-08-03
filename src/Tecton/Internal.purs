@@ -91,11 +91,13 @@ module Tecton.Internal
   , add
   , adjacentSibling
   , after
+  , alias
   , alignContent
   , alignItems
   , alignSelf
   , alignmentBaseline
   , all
+  , allScroll
   , alphabetic
   , alt
   , alternate
@@ -114,6 +116,7 @@ module Tecton.Internal
   , armenian
   , article
   , aside
+  , aspectRatio
   , assoc
   , async
   , attContains
@@ -188,6 +191,7 @@ module Tecton.Internal
   , canvas
   , capitalize
   , caption
+  , cell
   , center
   , central
   , ch
@@ -363,6 +367,7 @@ module Tecton.Internal
   , cm
   , code
   , col
+  , colResize
   , colgroup
   , collapse
   , collectMediaFeatures
@@ -381,9 +386,12 @@ module Tecton.Internal
   , contentBox
   , contenteditable
   , contents
+  , contextMenu
   , controls
   , coords
+  , copy
   , cover
+  , crosshair
   , cubicBezier
   , currentColor
   , cursive
@@ -420,6 +428,7 @@ module Tecton.Internal
   , dpi
   , draggable
   , dt
+  , eResize
   , ease
   , easeIn
   , easeInOut
@@ -435,6 +444,7 @@ module Tecton.Internal
   , enctype
   , end
   , even
+  , ewResize
   , ex
   , expanded
   , extraCondensed
@@ -485,6 +495,8 @@ module Tecton.Internal
   , gap
   , generalSibling
   , georgian
+  , grab
+  , grabbing
   , grid
   , gridAutoColumns
   , gridAutoFlow
@@ -509,6 +521,7 @@ module Tecton.Internal
   , headers
   , hebrew
   , height
+  , help
   , hidden
   , high
   , hiragana
@@ -637,25 +650,34 @@ module Tecton.Internal
   , mm
   , mongolian
   , monospace
+  , move
   , ms
   , multiple
   , multiply
   , multiplyFlipped
   , muted
   , myanmar
+  , nResize
   , name
   , nav
+  , neResize
+  , neswResize
   , nil
+  , noDrop
   , noRepeat
   , none
   , normal
   , not
+  , notAllowed
   , novalidate
   , nowrap
+  , nsResize
   , nthChild
   , nthLastChild
   , nthOfType
   , number
+  , nwResize
+  , nwseResize
   , oblique
   , odd
   , ol
@@ -764,6 +786,7 @@ module Tecton.Internal
   , persian
   , perspective
   , placeholder
+  , pointer
   , polygon
   , polyline
   , portrait
@@ -810,12 +833,14 @@ module Tecton.Internal
   , round
   , row
   , rowGap
+  , rowResize
   , rowReverse
   , rows
   , rowspan
   , rtl
   , runVal
   , running
+  , sResize
   , safe
   , sandbox
   , sansSerif
@@ -827,6 +852,7 @@ module Tecton.Internal
   , scope
   , screen
   , scroll
+  , seResize
   , sec
   , section
   , select
@@ -872,6 +898,7 @@ module Tecton.Internal
   , sup
   , super
   , svg
+  , swResize
   , systemUI
   , tabindex
   , table
@@ -888,6 +915,7 @@ module Tecton.Internal
   , tbody
   , td
   , telugu
+  , text
   , textAlign
   , textBottom
   , textDecorationColor
@@ -949,6 +977,7 @@ module Tecton.Internal
   , val
   , value
   , verticalAlign
+  , verticalText
   , vh
   , video
   , visibility
@@ -957,6 +986,8 @@ module Tecton.Internal
   , vmax
   , vmin
   , vw
+  , wResize
+  , wait
   , wavy
   , whiteSpace
   , width
@@ -971,36 +1002,6 @@ module Tecton.Internal
   , xxLarge
   , xxSmall
   , zIndex
-  , contextMenu
-  , help
-  , pointer
-  , wait
-  , cell
-  , crosshair
-  , text
-  , verticalText
-  , alias
-  , copy
-  , move
-  , noDrop
-  , notAllowed
-  , grab
-  , grabbing
-  , eResize
-  , nResize
-  , neResize
-  , nwResize
-  , sResize
-  , seResize
-  , swResize
-  , wResize
-  , ewResize
-  , nsResize
-  , neswResize
-  , nwseResize
-  , colResize
-  , rowResize
-  , allScroll
   , zoomIn
   , zoomOut
   ) where
@@ -6421,6 +6422,24 @@ instance
   , ToVal (Proxy s)
   ) =>
   Declaration "box-sizing" (Proxy s) where
+  pval = const val
+
+-- https://www.w3.org/TR/css-sizing-4/#ratios
+
+aspectRatio = Proxy :: Proxy "aspect-ratio"
+
+instance Property "aspect-ratio"
+
+instance Declaration "aspect-ratio" (Proxy "auto") where
+  pval = const val
+
+instance Declaration "aspect-ratio" Int where
+  pval = const val
+
+instance Declaration "aspect-ratio" Number where
+  pval = const val
+
+instance Declaration "aspect-ratio" Ratio where
   pval = const val
 
 --------------------------------------------------------------------------------

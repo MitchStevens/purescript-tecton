@@ -44,6 +44,7 @@ import Tecton.Internal
   , armenian
   , article
   , aside
+  , aspectRatio
   , async
   , audio
   , auto
